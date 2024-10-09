@@ -1,0 +1,1470 @@
+2024-10-09 19:22:09 [INFO] Question: plot the number of accidents vs location
+2024-10-09 19:22:09 [INFO] Running PandasAI with openai LLM...
+2024-10-09 19:22:09 [INFO] Prompt ID: 45ddff5e-4c58-4056-bead-b687f9a7767b
+2024-10-09 19:22:09 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-10-09 19:22:09 [INFO] Executing Step 0: ValidatePipelineInput
+2024-10-09 19:22:09 [INFO] Executing Step 1: CacheLookup
+2024-10-09 19:22:09 [INFO] Executing Step 2: PromptGeneration
+2024-10-09 19:22:09 [INFO] Using prompt: <dataframe>
+dfs[0]:62x8
+Unnamed: 0,Year,Total number of accidents,Fatal Accidents,Non-Fatal Accidents,Killed,Injured,Total number of vehicles involved
+Sindh,2010-11,1270,942,94,921,11383,3288
+Punjab,2014-15,1465,883,2629,1317,4524,545
+Islamabad,2012-13 * ,315,785,2243,1750,9777,5240
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ plot the number of accidents vs location
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-10-09 19:22:10 [INFO] Executing Step 3: CodeGenerator
+2024-10-09 19:22:14 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-09 19:22:14 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:62x8
+Unnamed: 0,Year,Total number of accidents,Fatal Accidents,Non-Fatal Accidents,Killed,Injured,Total number of vehicles involved
+Sindh,2010-11,1270,942,94,921,11383,3288
+Punjab,2014-15,1465,883,2629,1317,4524,545
+Islamabad,2012-13 * ,315,785,2243,1750,9777,5240
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ plot the number of accidents vs location
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2024-10-09 19:22:14 [INFO] Code generated:
+            ```
+            # TODO: import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Assuming dfs is already defined as a list of DataFrames
+# For this example, we will use the first DataFrame in the list
+df = dfs[0]
+
+# Clean the DataFrame by removing any unnecessary columns and renaming for clarity
+df = df.rename(columns={'Unnamed: 0': 'Location', 'Total number of accidents': 'Total Accidents'})
+df = df[['Location', 'Total Accidents']]
+
+# Convert the 'Total Accidents' column to numeric if it's not already
+df['Total Accidents'] = pd.to_numeric(df['Total Accidents'], errors='coerce')
+
+# Plotting the number of accidents vs location
+plt.figure(figsize=(10, 6))
+plt.bar(df['Location'], df['Total Accidents'], color='skyblue')
+plt.title('Number of Accidents vs Location')
+plt.xlabel('Location')
+plt.ylabel('Total Number of Accidents')
+plt.xticks(rotation=45)
+plt.tight_layout()
+
+# Save the plot as a PNG file
+plot_filename = 'accidents_vs_location.png'
+plt.savefig(plot_filename)
+
+# Declare result var: 
+result = {"type": "plot", "value": plot_filename}
+            ```
+            
+2024-10-09 19:22:14 [INFO] Executing Step 4: CachePopulation
+2024-10-09 19:22:14 [INFO] Executing Step 5: CodeCleaning
+2024-10-09 19:22:14 [INFO] Saving charts to D:\COURSES\RANDOM_PROJECTS\PANDAS AI STEAMLIT\pandas-ai-streamlit\exports\charts\temp_chart.png
+2024-10-09 19:22:14 [INFO] 
+Code running:
+```
+df = dfs[0]
+df = df.rename(columns={'Unnamed: 0': 'Location', 'Total number of accidents': 'Total Accidents'})
+df = df[['Location', 'Total Accidents']]
+df['Total Accidents'] = pd.to_numeric(df['Total Accidents'], errors='coerce')
+plt.figure(figsize=(10, 6))
+plt.bar(df['Location'], df['Total Accidents'], color='skyblue')
+plt.title('Number of Accidents vs Location')
+plt.xlabel('Location')
+plt.ylabel('Total Number of Accidents')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'D:/COURSES/RANDOM_PROJECTS/PANDAS AI STEAMLIT/pandas-ai-streamlit/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+        ```
+2024-10-09 19:22:14 [INFO] Executing Step 6: CodeExecution
+2024-10-09 19:22:14 [ERROR] Failed with error: Traceback (most recent call last):
+  File "C:\Users\waghm\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+2024-10-09 19:22:14 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2024-10-09 19:22:14 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-10-09 19:22:14 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-10-09 19:22:14 [INFO] Using prompt: <dataframe>
+dfs[0]:62x8
+Unnamed: 0,Year,Total number of accidents,Fatal Accidents,Non-Fatal Accidents,Killed,Injured,Total number of vehicles involved
+Sindh,2010-11,1270,942,94,921,11383,3288
+Punjab,2014-15,1465,883,2629,1317,4524,545
+Islamabad,2012-13 * ,315,785,2243,1750,9777,5240
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ plot the number of accidents vs location
+
+You generated this python code:
+df = dfs[0]
+df = df.rename(columns={'Unnamed: 0': 'Location', 'Total number of accidents': 'Total Accidents'})
+df = df[['Location', 'Total Accidents']]
+df['Total Accidents'] = pd.to_numeric(df['Total Accidents'], errors='coerce')
+plt.figure(figsize=(10, 6))
+plt.bar(df['Location'], df['Total Accidents'], color='skyblue')
+plt.title('Number of Accidents vs Location')
+plt.xlabel('Location')
+plt.ylabel('Total Number of Accidents')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'D:/COURSES/RANDOM_PROJECTS/PANDAS AI STEAMLIT/pandas-ai-streamlit/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\waghm\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+
+Fix the python code above and return the new python code:
+2024-10-09 19:22:14 [INFO] Executing Step 1: CodeGenerator
+2024-10-09 19:22:18 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-09 19:22:18 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:62x8
+Unnamed: 0,Year,Total number of accidents,Fatal Accidents,Non-Fatal Accidents,Killed,Injured,Total number of vehicles involved
+Sindh,2010-11,1270,942,94,921,11383,3288
+Punjab,2014-15,1465,883,2629,1317,4524,545
+Islamabad,2012-13 * ,315,785,2243,1750,9777,5240
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ plot the number of accidents vs location
+
+You generated this python code:
+df = dfs[0]
+df = df.rename(columns={'Unnamed: 0': 'Location', 'Total number of accidents': 'Total Accidents'})
+df = df[['Location', 'Total Accidents']]
+df['Total Accidents'] = pd.to_numeric(df['Total Accidents'], errors='coerce')
+plt.figure(figsize=(10, 6))
+plt.bar(df['Location'], df['Total Accidents'], color='skyblue')
+plt.title('Number of Accidents vs Location')
+plt.xlabel('Location')
+plt.ylabel('Total Number of Accidents')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'D:/COURSES/RANDOM_PROJECTS/PANDAS AI STEAMLIT/pandas-ai-streamlit/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\waghm\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+
+Fix the python code above and return the new python code:
+            
+2024-10-09 19:22:18 [INFO] Code generated:
+            ```
+            import pandas as pd
+import matplotlib.pyplot as plt
+
+# Assuming dfs[0] is already defined as your DataFrame
+df = dfs[0]
+df = df.rename(columns={'Unnamed: 0': 'Location', 'Total number of accidents': 'Total Accidents'})
+df = df[['Location', 'Total Accidents']]
+df['Total Accidents'] = pd.to_numeric(df['Total Accidents'], errors='coerce')
+
+plt.figure(figsize=(10, 6))
+plt.bar(df['Location'], df['Total Accidents'], color='skyblue')
+plt.title('Number of Accidents vs Location')
+plt.xlabel('Location')
+plt.ylabel('Total Number of Accidents')
+plt.xticks(rotation=45)
+plt.tight_layout()
+
+# Save the plot to a file
+plot_filename = 'D:/COURSES/RANDOM_PROJECTS/PANDAS AI STEAMLIT/pandas-ai-streamlit/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+
+# Show the plot (optional, can be removed if not needed)
+plt.show()
+
+# Return the result in the expected format
+result = {'type': 'plot', 'value': plot_filename}
+            ```
+            
+2024-10-09 19:22:18 [INFO] Executing Step 2: CodeCleaning
+2024-10-09 19:22:18 [INFO] Saving charts to D:\COURSES\RANDOM_PROJECTS\PANDAS AI STEAMLIT\pandas-ai-streamlit\exports\charts\temp_chart.png
+2024-10-09 19:22:18 [INFO] 
+Code running:
+```
+df = dfs[0]
+df = df.rename(columns={'Unnamed: 0': 'Location', 'Total number of accidents': 'Total Accidents'})
+df = df[['Location', 'Total Accidents']]
+df['Total Accidents'] = pd.to_numeric(df['Total Accidents'], errors='coerce')
+plt.figure(figsize=(10, 6))
+plt.bar(df['Location'], df['Total Accidents'], color='skyblue')
+plt.title('Number of Accidents vs Location')
+plt.xlabel('Location')
+plt.ylabel('Total Number of Accidents')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'D:/COURSES/RANDOM_PROJECTS/PANDAS AI STEAMLIT/pandas-ai-streamlit/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+plt.show()
+result = {'type': 'plot', 'value': plot_filename}
+        ```
+2024-10-09 19:22:19 [ERROR] Failed with error: Traceback (most recent call last):
+  File "C:\Users\waghm\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+2024-10-09 19:22:19 [WARNING] Failed to execute code retrying with a correction framework [retry number: 2]
+2024-10-09 19:22:19 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-10-09 19:22:19 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-10-09 19:22:19 [INFO] Using prompt: <dataframe>
+dfs[0]:62x8
+Unnamed: 0,Year,Total number of accidents,Fatal Accidents,Non-Fatal Accidents,Killed,Injured,Total number of vehicles involved
+Sindh,2010-11,1270,942,94,921,11383,3288
+Punjab,2014-15,1465,883,2629,1317,4524,545
+Islamabad,2012-13 * ,315,785,2243,1750,9777,5240
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ plot the number of accidents vs location
+
+You generated this python code:
+df = dfs[0]
+df = df.rename(columns={'Unnamed: 0': 'Location', 'Total number of accidents': 'Total Accidents'})
+df = df[['Location', 'Total Accidents']]
+df['Total Accidents'] = pd.to_numeric(df['Total Accidents'], errors='coerce')
+plt.figure(figsize=(10, 6))
+plt.bar(df['Location'], df['Total Accidents'], color='skyblue')
+plt.title('Number of Accidents vs Location')
+plt.xlabel('Location')
+plt.ylabel('Total Number of Accidents')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'D:/COURSES/RANDOM_PROJECTS/PANDAS AI STEAMLIT/pandas-ai-streamlit/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+plt.show()
+result = {'type': 'plot', 'value': plot_filename}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\waghm\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+
+Fix the python code above and return the new python code:
+2024-10-09 19:22:19 [INFO] Executing Step 1: CodeGenerator
+2024-10-09 19:22:22 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-09 19:22:22 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:62x8
+Unnamed: 0,Year,Total number of accidents,Fatal Accidents,Non-Fatal Accidents,Killed,Injured,Total number of vehicles involved
+Sindh,2010-11,1270,942,94,921,11383,3288
+Punjab,2014-15,1465,883,2629,1317,4524,545
+Islamabad,2012-13 * ,315,785,2243,1750,9777,5240
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ plot the number of accidents vs location
+
+You generated this python code:
+df = dfs[0]
+df = df.rename(columns={'Unnamed: 0': 'Location', 'Total number of accidents': 'Total Accidents'})
+df = df[['Location', 'Total Accidents']]
+df['Total Accidents'] = pd.to_numeric(df['Total Accidents'], errors='coerce')
+plt.figure(figsize=(10, 6))
+plt.bar(df['Location'], df['Total Accidents'], color='skyblue')
+plt.title('Number of Accidents vs Location')
+plt.xlabel('Location')
+plt.ylabel('Total Number of Accidents')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'D:/COURSES/RANDOM_PROJECTS/PANDAS AI STEAMLIT/pandas-ai-streamlit/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+plt.show()
+result = {'type': 'plot', 'value': plot_filename}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\waghm\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+
+Fix the python code above and return the new python code:
+            
+2024-10-09 19:22:22 [INFO] Code generated:
+            ```
+            import pandas as pd
+import matplotlib.pyplot as plt
+
+# Assuming dfs[0] is already defined as your DataFrame
+df = dfs[0]
+df = df.rename(columns={'Unnamed: 0': 'Location', 'Total number of accidents': 'Total Accidents'})
+df = df[['Location', 'Total Accidents']]
+df['Total Accidents'] = pd.to_numeric(df['Total Accidents'], errors='coerce')
+
+plt.figure(figsize=(10, 6))
+plt.bar(df['Location'], df['Total Accidents'], color='skyblue')
+plt.title('Number of Accidents vs Location')
+plt.xlabel('Location')
+plt.ylabel('Total Number of Accidents')
+plt.xticks(rotation=45)
+plt.tight_layout()
+
+# Save the plot to a file
+plot_filename = 'D:/COURSES/RANDOM_PROJECTS/PANDAS AI STEAMLIT/pandas-ai-streamlit/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+
+# Show the plot
+plt.show()
+
+# Return the plot filename as a dictionary
+result = {'type': 'plot', 'value': plot_filename}
+            ```
+            
+2024-10-09 19:22:22 [INFO] Executing Step 2: CodeCleaning
+2024-10-09 19:22:22 [INFO] Saving charts to D:\COURSES\RANDOM_PROJECTS\PANDAS AI STEAMLIT\pandas-ai-streamlit\exports\charts\temp_chart.png
+2024-10-09 19:22:22 [INFO] 
+Code running:
+```
+df = dfs[0]
+df = df.rename(columns={'Unnamed: 0': 'Location', 'Total number of accidents': 'Total Accidents'})
+df = df[['Location', 'Total Accidents']]
+df['Total Accidents'] = pd.to_numeric(df['Total Accidents'], errors='coerce')
+plt.figure(figsize=(10, 6))
+plt.bar(df['Location'], df['Total Accidents'], color='skyblue')
+plt.title('Number of Accidents vs Location')
+plt.xlabel('Location')
+plt.ylabel('Total Number of Accidents')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'D:/COURSES/RANDOM_PROJECTS/PANDAS AI STEAMLIT/pandas-ai-streamlit/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+plt.show()
+result = {'type': 'plot', 'value': plot_filename}
+        ```
+2024-10-09 19:22:23 [ERROR] Failed with error: Traceback (most recent call last):
+  File "C:\Users\waghm\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+2024-10-09 19:22:23 [WARNING] Failed to execute code retrying with a correction framework [retry number: 3]
+2024-10-09 19:22:23 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-10-09 19:22:23 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-10-09 19:22:23 [INFO] Using prompt: <dataframe>
+dfs[0]:62x8
+Unnamed: 0,Year,Total number of accidents,Fatal Accidents,Non-Fatal Accidents,Killed,Injured,Total number of vehicles involved
+Sindh,2010-11,1270,942,94,921,11383,3288
+Punjab,2014-15,1465,883,2629,1317,4524,545
+Islamabad,2012-13 * ,315,785,2243,1750,9777,5240
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ plot the number of accidents vs location
+
+You generated this python code:
+df = dfs[0]
+df = df.rename(columns={'Unnamed: 0': 'Location', 'Total number of accidents': 'Total Accidents'})
+df = df[['Location', 'Total Accidents']]
+df['Total Accidents'] = pd.to_numeric(df['Total Accidents'], errors='coerce')
+plt.figure(figsize=(10, 6))
+plt.bar(df['Location'], df['Total Accidents'], color='skyblue')
+plt.title('Number of Accidents vs Location')
+plt.xlabel('Location')
+plt.ylabel('Total Number of Accidents')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'D:/COURSES/RANDOM_PROJECTS/PANDAS AI STEAMLIT/pandas-ai-streamlit/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+plt.show()
+result = {'type': 'plot', 'value': plot_filename}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\waghm\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+
+Fix the python code above and return the new python code:
+2024-10-09 19:22:23 [INFO] Executing Step 1: CodeGenerator
+2024-10-09 19:22:28 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-09 19:22:28 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:62x8
+Unnamed: 0,Year,Total number of accidents,Fatal Accidents,Non-Fatal Accidents,Killed,Injured,Total number of vehicles involved
+Sindh,2010-11,1270,942,94,921,11383,3288
+Punjab,2014-15,1465,883,2629,1317,4524,545
+Islamabad,2012-13 * ,315,785,2243,1750,9777,5240
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ plot the number of accidents vs location
+
+You generated this python code:
+df = dfs[0]
+df = df.rename(columns={'Unnamed: 0': 'Location', 'Total number of accidents': 'Total Accidents'})
+df = df[['Location', 'Total Accidents']]
+df['Total Accidents'] = pd.to_numeric(df['Total Accidents'], errors='coerce')
+plt.figure(figsize=(10, 6))
+plt.bar(df['Location'], df['Total Accidents'], color='skyblue')
+plt.title('Number of Accidents vs Location')
+plt.xlabel('Location')
+plt.ylabel('Total Number of Accidents')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'D:/COURSES/RANDOM_PROJECTS/PANDAS AI STEAMLIT/pandas-ai-streamlit/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+plt.show()
+result = {'type': 'plot', 'value': plot_filename}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\waghm\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+
+Fix the python code above and return the new python code:
+            
+2024-10-09 19:22:28 [INFO] Code generated:
+            ```
+            import pandas as pd
+import matplotlib.pyplot as plt
+
+# Assuming dfs[0] is already defined as your DataFrame
+df = dfs[0]
+df = df.rename(columns={'Unnamed: 0': 'Location', 'Total number of accidents': 'Total Accidents'})
+df = df[['Location', 'Total Accidents']]
+df['Total Accidents'] = pd.to_numeric(df['Total Accidents'], errors='coerce')
+
+plt.figure(figsize=(10, 6))
+plt.bar(df['Location'], df['Total Accidents'], color='skyblue')
+plt.title('Number of Accidents vs Location')
+plt.xlabel('Location')
+plt.ylabel('Total Number of Accidents')
+plt.xticks(rotation=45)
+plt.tight_layout()
+
+# Save the plot to a file
+plot_filename = 'D:/COURSES/RANDOM_PROJECTS/PANDAS AI STEAMLIT/pandas-ai-streamlit/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+
+# Show the plot
+plt.show()
+
+# Return the plot filename as a dictionary
+result = {'type': 'plot', 'value': plot_filename}
+            ```
+            
+2024-10-09 19:22:28 [INFO] Executing Step 2: CodeCleaning
+2024-10-09 19:22:28 [INFO] Saving charts to D:\COURSES\RANDOM_PROJECTS\PANDAS AI STEAMLIT\pandas-ai-streamlit\exports\charts\temp_chart.png
+2024-10-09 19:22:28 [INFO] 
+Code running:
+```
+df = dfs[0]
+df = df.rename(columns={'Unnamed: 0': 'Location', 'Total number of accidents': 'Total Accidents'})
+df = df[['Location', 'Total Accidents']]
+df['Total Accidents'] = pd.to_numeric(df['Total Accidents'], errors='coerce')
+plt.figure(figsize=(10, 6))
+plt.bar(df['Location'], df['Total Accidents'], color='skyblue')
+plt.title('Number of Accidents vs Location')
+plt.xlabel('Location')
+plt.ylabel('Total Number of Accidents')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'D:/COURSES/RANDOM_PROJECTS/PANDAS AI STEAMLIT/pandas-ai-streamlit/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+plt.show()
+result = {'type': 'plot', 'value': plot_filename}
+        ```
+2024-10-09 19:22:28 [ERROR] Failed with error: Traceback (most recent call last):
+  File "C:\Users\waghm\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+2024-10-09 19:22:28 [ERROR] Pipeline failed on step 6: Value type <class 'str'> must match with type plot
+2024-10-09 19:26:01 [INFO] Question: plot the number of accidents vs location
+2024-10-09 19:26:01 [INFO] Running PandasAI with openai LLM...
+2024-10-09 19:26:01 [INFO] Prompt ID: 5c32f2d2-ae6f-49cf-b914-322b1a69409f
+2024-10-09 19:26:01 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-10-09 19:26:01 [INFO] Executing Step 0: ValidatePipelineInput
+2024-10-09 19:26:01 [INFO] Executing Step 1: CacheLookup
+2024-10-09 19:26:01 [INFO] Using cached response
+2024-10-09 19:26:01 [INFO] Executing Step 2: PromptGeneration
+2024-10-09 19:26:01 [INFO] Executing Step 2: Skipping...
+2024-10-09 19:26:01 [INFO] Executing Step 3: CodeGenerator
+2024-10-09 19:26:01 [INFO] Executing Step 3: Skipping...
+2024-10-09 19:26:01 [INFO] Executing Step 4: CachePopulation
+2024-10-09 19:26:01 [INFO] Executing Step 4: Skipping...
+2024-10-09 19:26:01 [INFO] Executing Step 5: CodeCleaning
+2024-10-09 19:26:01 [INFO] Saving charts to D:\COURSES\RANDOM_PROJECTS\PANDAS AI STEAMLIT\pandas-ai-streamlit\exports\charts\temp_chart.png
+2024-10-09 19:26:01 [INFO] 
+Code running:
+```
+df = dfs[0]
+df = df.rename(columns={'Unnamed: 0': 'Location', 'Total number of accidents': 'Total Accidents'})
+df = df[['Location', 'Total Accidents']]
+df['Total Accidents'] = pd.to_numeric(df['Total Accidents'], errors='coerce')
+plt.figure(figsize=(10, 6))
+plt.bar(df['Location'], df['Total Accidents'], color='skyblue')
+plt.title('Number of Accidents vs Location')
+plt.xlabel('Location')
+plt.ylabel('Total Number of Accidents')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'D:/COURSES/RANDOM_PROJECTS/PANDAS AI STEAMLIT/pandas-ai-streamlit/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+        ```
+2024-10-09 19:26:01 [INFO] Executing Step 6: CodeExecution
+2024-10-09 19:26:01 [ERROR] Failed with error: Traceback (most recent call last):
+  File "C:\Users\waghm\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+2024-10-09 19:26:01 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2024-10-09 19:26:01 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-10-09 19:26:01 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-10-09 19:26:01 [INFO] Using prompt: <dataframe>
+dfs[0]:62x8
+Unnamed: 0,Year,Total number of accidents,Fatal Accidents,Non-Fatal Accidents,Killed,Injured,Total number of vehicles involved
+Pakistan,2016-17,379,2808,183,163,1160,434
+Islamabad,2013-14,226,178,225,5271,5804,3501
+Sindh,2012-13 * ,5344,4829,179,136,5790,382
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ plot the number of accidents vs location
+
+You generated this python code:
+df = dfs[0]
+df = df.rename(columns={'Unnamed: 0': 'Location', 'Total number of accidents': 'Total Accidents'})
+df = df[['Location', 'Total Accidents']]
+df['Total Accidents'] = pd.to_numeric(df['Total Accidents'], errors='coerce')
+plt.figure(figsize=(10, 6))
+plt.bar(df['Location'], df['Total Accidents'], color='skyblue')
+plt.title('Number of Accidents vs Location')
+plt.xlabel('Location')
+plt.ylabel('Total Number of Accidents')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'D:/COURSES/RANDOM_PROJECTS/PANDAS AI STEAMLIT/pandas-ai-streamlit/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\waghm\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+
+Fix the python code above and return the new python code:
+2024-10-09 19:26:01 [INFO] Executing Step 1: CodeGenerator
+2024-10-09 19:26:08 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-09 19:26:08 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:62x8
+Unnamed: 0,Year,Total number of accidents,Fatal Accidents,Non-Fatal Accidents,Killed,Injured,Total number of vehicles involved
+Pakistan,2016-17,379,2808,183,163,1160,434
+Islamabad,2013-14,226,178,225,5271,5804,3501
+Sindh,2012-13 * ,5344,4829,179,136,5790,382
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ plot the number of accidents vs location
+
+You generated this python code:
+df = dfs[0]
+df = df.rename(columns={'Unnamed: 0': 'Location', 'Total number of accidents': 'Total Accidents'})
+df = df[['Location', 'Total Accidents']]
+df['Total Accidents'] = pd.to_numeric(df['Total Accidents'], errors='coerce')
+plt.figure(figsize=(10, 6))
+plt.bar(df['Location'], df['Total Accidents'], color='skyblue')
+plt.title('Number of Accidents vs Location')
+plt.xlabel('Location')
+plt.ylabel('Total Number of Accidents')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'D:/COURSES/RANDOM_PROJECTS/PANDAS AI STEAMLIT/pandas-ai-streamlit/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\waghm\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+
+Fix the python code above and return the new python code:
+            
+2024-10-09 19:26:08 [INFO] Code generated:
+            ```
+            import pandas as pd
+import matplotlib.pyplot as plt
+
+# Assuming dfs[0] is already defined as your DataFrame
+df = dfs[0]
+df = df.rename(columns={'Unnamed: 0': 'Location', 'Total number of accidents': 'Total Accidents'})
+df = df[['Location', 'Total Accidents']]
+df['Total Accidents'] = pd.to_numeric(df['Total Accidents'], errors='coerce')
+
+plt.figure(figsize=(10, 6))
+plt.bar(df['Location'], df['Total Accidents'], color='skyblue')
+plt.title('Number of Accidents vs Location')
+plt.xlabel('Location')
+plt.ylabel('Total Number of Accidents')
+plt.xticks(rotation=45)
+plt.tight_layout()
+
+# Save the plot to a file
+plot_filename = 'D:/COURSES/RANDOM_PROJECTS/PANDAS AI STEAMLIT/pandas-ai-streamlit/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+
+# Show the plot (optional, can be removed if not needed)
+plt.show()
+
+# Return the plot filename as a dictionary
+result = {'type': 'plot', 'value': plot_filename}
+            ```
+            
+2024-10-09 19:26:08 [INFO] Executing Step 2: CodeCleaning
+2024-10-09 19:26:08 [INFO] Saving charts to D:\COURSES\RANDOM_PROJECTS\PANDAS AI STEAMLIT\pandas-ai-streamlit\exports\charts\temp_chart.png
+2024-10-09 19:26:08 [INFO] 
+Code running:
+```
+df = dfs[0]
+df = df.rename(columns={'Unnamed: 0': 'Location', 'Total number of accidents': 'Total Accidents'})
+df = df[['Location', 'Total Accidents']]
+df['Total Accidents'] = pd.to_numeric(df['Total Accidents'], errors='coerce')
+plt.figure(figsize=(10, 6))
+plt.bar(df['Location'], df['Total Accidents'], color='skyblue')
+plt.title('Number of Accidents vs Location')
+plt.xlabel('Location')
+plt.ylabel('Total Number of Accidents')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'D:/COURSES/RANDOM_PROJECTS/PANDAS AI STEAMLIT/pandas-ai-streamlit/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+plt.show()
+result = {'type': 'plot', 'value': plot_filename}
+        ```
+2024-10-09 19:26:08 [ERROR] Failed with error: Traceback (most recent call last):
+  File "C:\Users\waghm\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+2024-10-09 19:26:08 [WARNING] Failed to execute code retrying with a correction framework [retry number: 2]
+2024-10-09 19:26:08 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-10-09 19:26:08 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-10-09 19:26:08 [INFO] Using prompt: <dataframe>
+dfs[0]:62x8
+Unnamed: 0,Year,Total number of accidents,Fatal Accidents,Non-Fatal Accidents,Killed,Injured,Total number of vehicles involved
+Pakistan,2016-17,379,2808,183,163,1160,434
+Islamabad,2013-14,226,178,225,5271,5804,3501
+Sindh,2012-13 * ,5344,4829,179,136,5790,382
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ plot the number of accidents vs location
+
+You generated this python code:
+df = dfs[0]
+df = df.rename(columns={'Unnamed: 0': 'Location', 'Total number of accidents': 'Total Accidents'})
+df = df[['Location', 'Total Accidents']]
+df['Total Accidents'] = pd.to_numeric(df['Total Accidents'], errors='coerce')
+plt.figure(figsize=(10, 6))
+plt.bar(df['Location'], df['Total Accidents'], color='skyblue')
+plt.title('Number of Accidents vs Location')
+plt.xlabel('Location')
+plt.ylabel('Total Number of Accidents')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'D:/COURSES/RANDOM_PROJECTS/PANDAS AI STEAMLIT/pandas-ai-streamlit/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+plt.show()
+result = {'type': 'plot', 'value': plot_filename}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\waghm\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+
+Fix the python code above and return the new python code:
+2024-10-09 19:26:08 [INFO] Executing Step 1: CodeGenerator
+2024-10-09 19:26:16 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-09 19:26:16 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:62x8
+Unnamed: 0,Year,Total number of accidents,Fatal Accidents,Non-Fatal Accidents,Killed,Injured,Total number of vehicles involved
+Pakistan,2016-17,379,2808,183,163,1160,434
+Islamabad,2013-14,226,178,225,5271,5804,3501
+Sindh,2012-13 * ,5344,4829,179,136,5790,382
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ plot the number of accidents vs location
+
+You generated this python code:
+df = dfs[0]
+df = df.rename(columns={'Unnamed: 0': 'Location', 'Total number of accidents': 'Total Accidents'})
+df = df[['Location', 'Total Accidents']]
+df['Total Accidents'] = pd.to_numeric(df['Total Accidents'], errors='coerce')
+plt.figure(figsize=(10, 6))
+plt.bar(df['Location'], df['Total Accidents'], color='skyblue')
+plt.title('Number of Accidents vs Location')
+plt.xlabel('Location')
+plt.ylabel('Total Number of Accidents')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'D:/COURSES/RANDOM_PROJECTS/PANDAS AI STEAMLIT/pandas-ai-streamlit/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+plt.show()
+result = {'type': 'plot', 'value': plot_filename}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\waghm\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+
+Fix the python code above and return the new python code:
+            
+2024-10-09 19:26:16 [INFO] Code generated:
+            ```
+            import pandas as pd
+import matplotlib.pyplot as plt
+
+# Assuming dfs[0] is already defined as your DataFrame
+df = dfs[0]
+df = df.rename(columns={'Unnamed: 0': 'Location', 'Total number of accidents': 'Total Accidents'})
+df = df[['Location', 'Total Accidents']]
+df['Total Accidents'] = pd.to_numeric(df['Total Accidents'], errors='coerce')
+
+plt.figure(figsize=(10, 6))
+plt.bar(df['Location'], df['Total Accidents'], color='skyblue')
+plt.title('Number of Accidents vs Location')
+plt.xlabel('Location')
+plt.ylabel('Total Number of Accidents')
+plt.xticks(rotation=45)
+plt.tight_layout()
+
+# Save the plot to a file
+plot_filename = 'D:/COURSES/RANDOM_PROJECTS/PANDAS AI STEAMLIT/pandas-ai-streamlit/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+
+# Show the plot
+plt.show()
+
+# Return the plot filename as a dictionary
+result = {'type': 'plot', 'value': plot_filename}
+            ```
+            
+2024-10-09 19:26:16 [INFO] Executing Step 2: CodeCleaning
+2024-10-09 19:26:16 [INFO] Saving charts to D:\COURSES\RANDOM_PROJECTS\PANDAS AI STEAMLIT\pandas-ai-streamlit\exports\charts\temp_chart.png
+2024-10-09 19:26:16 [INFO] 
+Code running:
+```
+df = dfs[0]
+df = df.rename(columns={'Unnamed: 0': 'Location', 'Total number of accidents': 'Total Accidents'})
+df = df[['Location', 'Total Accidents']]
+df['Total Accidents'] = pd.to_numeric(df['Total Accidents'], errors='coerce')
+plt.figure(figsize=(10, 6))
+plt.bar(df['Location'], df['Total Accidents'], color='skyblue')
+plt.title('Number of Accidents vs Location')
+plt.xlabel('Location')
+plt.ylabel('Total Number of Accidents')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'D:/COURSES/RANDOM_PROJECTS/PANDAS AI STEAMLIT/pandas-ai-streamlit/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+plt.show()
+result = {'type': 'plot', 'value': plot_filename}
+        ```
+2024-10-09 19:26:16 [ERROR] Failed with error: Traceback (most recent call last):
+  File "C:\Users\waghm\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+2024-10-09 19:26:16 [WARNING] Failed to execute code retrying with a correction framework [retry number: 3]
+2024-10-09 19:26:16 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-10-09 19:26:16 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-10-09 19:26:16 [INFO] Using prompt: <dataframe>
+dfs[0]:62x8
+Unnamed: 0,Year,Total number of accidents,Fatal Accidents,Non-Fatal Accidents,Killed,Injured,Total number of vehicles involved
+Pakistan,2016-17,379,2808,183,163,1160,434
+Islamabad,2013-14,226,178,225,5271,5804,3501
+Sindh,2012-13 * ,5344,4829,179,136,5790,382
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ plot the number of accidents vs location
+
+You generated this python code:
+df = dfs[0]
+df = df.rename(columns={'Unnamed: 0': 'Location', 'Total number of accidents': 'Total Accidents'})
+df = df[['Location', 'Total Accidents']]
+df['Total Accidents'] = pd.to_numeric(df['Total Accidents'], errors='coerce')
+plt.figure(figsize=(10, 6))
+plt.bar(df['Location'], df['Total Accidents'], color='skyblue')
+plt.title('Number of Accidents vs Location')
+plt.xlabel('Location')
+plt.ylabel('Total Number of Accidents')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'D:/COURSES/RANDOM_PROJECTS/PANDAS AI STEAMLIT/pandas-ai-streamlit/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+plt.show()
+result = {'type': 'plot', 'value': plot_filename}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\waghm\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+
+Fix the python code above and return the new python code:
+2024-10-09 19:26:16 [INFO] Executing Step 1: CodeGenerator
+2024-10-09 19:26:22 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-09 19:26:22 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:62x8
+Unnamed: 0,Year,Total number of accidents,Fatal Accidents,Non-Fatal Accidents,Killed,Injured,Total number of vehicles involved
+Pakistan,2016-17,379,2808,183,163,1160,434
+Islamabad,2013-14,226,178,225,5271,5804,3501
+Sindh,2012-13 * ,5344,4829,179,136,5790,382
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ plot the number of accidents vs location
+
+You generated this python code:
+df = dfs[0]
+df = df.rename(columns={'Unnamed: 0': 'Location', 'Total number of accidents': 'Total Accidents'})
+df = df[['Location', 'Total Accidents']]
+df['Total Accidents'] = pd.to_numeric(df['Total Accidents'], errors='coerce')
+plt.figure(figsize=(10, 6))
+plt.bar(df['Location'], df['Total Accidents'], color='skyblue')
+plt.title('Number of Accidents vs Location')
+plt.xlabel('Location')
+plt.ylabel('Total Number of Accidents')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'D:/COURSES/RANDOM_PROJECTS/PANDAS AI STEAMLIT/pandas-ai-streamlit/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+plt.show()
+result = {'type': 'plot', 'value': plot_filename}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\waghm\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+
+Fix the python code above and return the new python code:
+            
+2024-10-09 19:26:22 [INFO] Code generated:
+            ```
+            import pandas as pd
+import matplotlib.pyplot as plt
+
+# Assuming dfs[0] is already defined as your DataFrame
+df = dfs[0]
+df = df.rename(columns={'Unnamed: 0': 'Location', 'Total number of accidents': 'Total Accidents'})
+df = df[['Location', 'Total Accidents']]
+df['Total Accidents'] = pd.to_numeric(df['Total Accidents'], errors='coerce')
+
+plt.figure(figsize=(10, 6))
+plt.bar(df['Location'], df['Total Accidents'], color='skyblue')
+plt.title('Number of Accidents vs Location')
+plt.xlabel('Location')
+plt.ylabel('Total Number of Accidents')
+plt.xticks(rotation=45)
+plt.tight_layout()
+
+# Save the plot to a file
+plot_filename = 'D:/COURSES/RANDOM_PROJECTS/PANDAS AI STEAMLIT/pandas-ai-streamlit/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+
+# Show the plot
+plt.show()
+
+# Return the plot filename as a dictionary
+result = {'type': 'plot', 'value': plot_filename}
+            ```
+            
+2024-10-09 19:26:22 [INFO] Executing Step 2: CodeCleaning
+2024-10-09 19:26:22 [INFO] Saving charts to D:\COURSES\RANDOM_PROJECTS\PANDAS AI STEAMLIT\pandas-ai-streamlit\exports\charts\temp_chart.png
+2024-10-09 19:26:22 [INFO] 
+Code running:
+```
+df = dfs[0]
+df = df.rename(columns={'Unnamed: 0': 'Location', 'Total number of accidents': 'Total Accidents'})
+df = df[['Location', 'Total Accidents']]
+df['Total Accidents'] = pd.to_numeric(df['Total Accidents'], errors='coerce')
+plt.figure(figsize=(10, 6))
+plt.bar(df['Location'], df['Total Accidents'], color='skyblue')
+plt.title('Number of Accidents vs Location')
+plt.xlabel('Location')
+plt.ylabel('Total Number of Accidents')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'D:/COURSES/RANDOM_PROJECTS/PANDAS AI STEAMLIT/pandas-ai-streamlit/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+plt.show()
+result = {'type': 'plot', 'value': plot_filename}
+        ```
+2024-10-09 19:26:22 [ERROR] Failed with error: Traceback (most recent call last):
+  File "C:\Users\waghm\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+2024-10-09 19:26:22 [ERROR] Pipeline failed on step 6: Value type <class 'str'> must match with type plot
+2024-10-09 19:31:00 [INFO] Question: plot the number of accidents vs location
+2024-10-09 19:31:00 [INFO] Running PandasAI with openai LLM...
+2024-10-09 19:31:00 [INFO] Prompt ID: f9942c50-4a74-4900-b9b5-210e4bce25df
+2024-10-09 19:31:00 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-10-09 19:31:00 [INFO] Executing Step 0: ValidatePipelineInput
+2024-10-09 19:31:00 [INFO] Executing Step 1: CacheLookup
+2024-10-09 19:31:00 [INFO] Using cached response
+2024-10-09 19:31:00 [INFO] Executing Step 2: PromptGeneration
+2024-10-09 19:31:00 [INFO] Executing Step 2: Skipping...
+2024-10-09 19:31:00 [INFO] Executing Step 3: CodeGenerator
+2024-10-09 19:31:00 [INFO] Executing Step 3: Skipping...
+2024-10-09 19:31:00 [INFO] Executing Step 4: CachePopulation
+2024-10-09 19:31:00 [INFO] Executing Step 4: Skipping...
+2024-10-09 19:31:00 [INFO] Executing Step 5: CodeCleaning
+2024-10-09 19:31:00 [INFO] Saving charts to D:\COURSES\RANDOM_PROJECTS\PANDAS AI STEAMLIT\pandas-ai-streamlit\exports\charts\temp_chart.png
+2024-10-09 19:31:00 [INFO] 
+Code running:
+```
+df = dfs[0]
+df = df.rename(columns={'Unnamed: 0': 'Location', 'Total number of accidents': 'Total Accidents'})
+df = df[['Location', 'Total Accidents']]
+df['Total Accidents'] = pd.to_numeric(df['Total Accidents'], errors='coerce')
+plt.figure(figsize=(10, 6))
+plt.bar(df['Location'], df['Total Accidents'], color='skyblue')
+plt.title('Number of Accidents vs Location')
+plt.xlabel('Location')
+plt.ylabel('Total Number of Accidents')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'D:/COURSES/RANDOM_PROJECTS/PANDAS AI STEAMLIT/pandas-ai-streamlit/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+        ```
+2024-10-09 19:31:00 [INFO] Executing Step 6: CodeExecution
+2024-10-09 19:31:00 [ERROR] Failed with error: Traceback (most recent call last):
+  File "C:\Users\waghm\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+2024-10-09 19:31:00 [WARNING] Failed to execute code retrying with a correction framework [retry number: 1]
+2024-10-09 19:31:00 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-10-09 19:31:00 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-10-09 19:31:00 [INFO] Using prompt: <dataframe>
+dfs[0]:62x8
+Unnamed: 0,Year,Total number of accidents,Fatal Accidents,Non-Fatal Accidents,Killed,Injured,Total number of vehicles involved
+Pakistan,2010-11,259,147,272,4719,3913,1580
+Khyber Pakhtunkhwa,2013-14*,297,608,5104,2692,838,1541
+Sindh,2013-14,256,3500,5369,245,542,4260
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ plot the number of accidents vs location
+
+You generated this python code:
+df = dfs[0]
+df = df.rename(columns={'Unnamed: 0': 'Location', 'Total number of accidents': 'Total Accidents'})
+df = df[['Location', 'Total Accidents']]
+df['Total Accidents'] = pd.to_numeric(df['Total Accidents'], errors='coerce')
+plt.figure(figsize=(10, 6))
+plt.bar(df['Location'], df['Total Accidents'], color='skyblue')
+plt.title('Number of Accidents vs Location')
+plt.xlabel('Location')
+plt.ylabel('Total Number of Accidents')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'D:/COURSES/RANDOM_PROJECTS/PANDAS AI STEAMLIT/pandas-ai-streamlit/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\waghm\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+
+Fix the python code above and return the new python code:
+2024-10-09 19:31:00 [INFO] Executing Step 1: CodeGenerator
+2024-10-09 19:31:04 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-09 19:31:04 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:62x8
+Unnamed: 0,Year,Total number of accidents,Fatal Accidents,Non-Fatal Accidents,Killed,Injured,Total number of vehicles involved
+Pakistan,2010-11,259,147,272,4719,3913,1580
+Khyber Pakhtunkhwa,2013-14*,297,608,5104,2692,838,1541
+Sindh,2013-14,256,3500,5369,245,542,4260
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ plot the number of accidents vs location
+
+You generated this python code:
+df = dfs[0]
+df = df.rename(columns={'Unnamed: 0': 'Location', 'Total number of accidents': 'Total Accidents'})
+df = df[['Location', 'Total Accidents']]
+df['Total Accidents'] = pd.to_numeric(df['Total Accidents'], errors='coerce')
+plt.figure(figsize=(10, 6))
+plt.bar(df['Location'], df['Total Accidents'], color='skyblue')
+plt.title('Number of Accidents vs Location')
+plt.xlabel('Location')
+plt.ylabel('Total Number of Accidents')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'D:/COURSES/RANDOM_PROJECTS/PANDAS AI STEAMLIT/pandas-ai-streamlit/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+result = {'type': 'plot', 'value': plot_filename}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\waghm\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+
+Fix the python code above and return the new python code:
+            
+2024-10-09 19:31:04 [INFO] Code generated:
+            ```
+            import pandas as pd
+import matplotlib.pyplot as plt
+
+# Assuming dfs[0] is already defined as your DataFrame
+df = dfs[0]
+df = df.rename(columns={'Unnamed: 0': 'Location', 'Total number of accidents': 'Total Accidents'})
+df = df[['Location', 'Total Accidents']]
+df['Total Accidents'] = pd.to_numeric(df['Total Accidents'], errors='coerce')
+
+plt.figure(figsize=(10, 6))
+plt.bar(df['Location'], df['Total Accidents'], color='skyblue')
+plt.title('Number of Accidents vs Location')
+plt.xlabel('Location')
+plt.ylabel('Total Number of Accidents')
+plt.xticks(rotation=45)
+plt.tight_layout()
+
+# Save the plot to a file
+plot_filename = 'D:/COURSES/RANDOM_PROJECTS/PANDAS AI STEAMLIT/pandas-ai-streamlit/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+
+# Show the plot (optional, can be removed if not needed)
+plt.show()
+
+# Return the result in the expected format
+result = {'type': 'plot', 'value': plot_filename}
+            ```
+            
+2024-10-09 19:31:04 [INFO] Executing Step 2: CodeCleaning
+2024-10-09 19:31:04 [INFO] Saving charts to D:\COURSES\RANDOM_PROJECTS\PANDAS AI STEAMLIT\pandas-ai-streamlit\exports\charts\temp_chart.png
+2024-10-09 19:31:04 [INFO] 
+Code running:
+```
+df = dfs[0]
+df = df.rename(columns={'Unnamed: 0': 'Location', 'Total number of accidents': 'Total Accidents'})
+df = df[['Location', 'Total Accidents']]
+df['Total Accidents'] = pd.to_numeric(df['Total Accidents'], errors='coerce')
+plt.figure(figsize=(10, 6))
+plt.bar(df['Location'], df['Total Accidents'], color='skyblue')
+plt.title('Number of Accidents vs Location')
+plt.xlabel('Location')
+plt.ylabel('Total Number of Accidents')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'D:/COURSES/RANDOM_PROJECTS/PANDAS AI STEAMLIT/pandas-ai-streamlit/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+plt.show()
+result = {'type': 'plot', 'value': plot_filename}
+        ```
+2024-10-09 19:31:04 [ERROR] Failed with error: Traceback (most recent call last):
+  File "C:\Users\waghm\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+2024-10-09 19:31:04 [WARNING] Failed to execute code retrying with a correction framework [retry number: 2]
+2024-10-09 19:31:04 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-10-09 19:31:04 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-10-09 19:31:04 [INFO] Using prompt: <dataframe>
+dfs[0]:62x8
+Unnamed: 0,Year,Total number of accidents,Fatal Accidents,Non-Fatal Accidents,Killed,Injured,Total number of vehicles involved
+Pakistan,2010-11,259,147,272,4719,3913,1580
+Khyber Pakhtunkhwa,2013-14*,297,608,5104,2692,838,1541
+Sindh,2013-14,256,3500,5369,245,542,4260
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ plot the number of accidents vs location
+
+You generated this python code:
+df = dfs[0]
+df = df.rename(columns={'Unnamed: 0': 'Location', 'Total number of accidents': 'Total Accidents'})
+df = df[['Location', 'Total Accidents']]
+df['Total Accidents'] = pd.to_numeric(df['Total Accidents'], errors='coerce')
+plt.figure(figsize=(10, 6))
+plt.bar(df['Location'], df['Total Accidents'], color='skyblue')
+plt.title('Number of Accidents vs Location')
+plt.xlabel('Location')
+plt.ylabel('Total Number of Accidents')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'D:/COURSES/RANDOM_PROJECTS/PANDAS AI STEAMLIT/pandas-ai-streamlit/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+plt.show()
+result = {'type': 'plot', 'value': plot_filename}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\waghm\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+
+Fix the python code above and return the new python code:
+2024-10-09 19:31:04 [INFO] Executing Step 1: CodeGenerator
+2024-10-09 19:31:08 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-09 19:31:08 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:62x8
+Unnamed: 0,Year,Total number of accidents,Fatal Accidents,Non-Fatal Accidents,Killed,Injured,Total number of vehicles involved
+Pakistan,2010-11,259,147,272,4719,3913,1580
+Khyber Pakhtunkhwa,2013-14*,297,608,5104,2692,838,1541
+Sindh,2013-14,256,3500,5369,245,542,4260
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ plot the number of accidents vs location
+
+You generated this python code:
+df = dfs[0]
+df = df.rename(columns={'Unnamed: 0': 'Location', 'Total number of accidents': 'Total Accidents'})
+df = df[['Location', 'Total Accidents']]
+df['Total Accidents'] = pd.to_numeric(df['Total Accidents'], errors='coerce')
+plt.figure(figsize=(10, 6))
+plt.bar(df['Location'], df['Total Accidents'], color='skyblue')
+plt.title('Number of Accidents vs Location')
+plt.xlabel('Location')
+plt.ylabel('Total Number of Accidents')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'D:/COURSES/RANDOM_PROJECTS/PANDAS AI STEAMLIT/pandas-ai-streamlit/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+plt.show()
+result = {'type': 'plot', 'value': plot_filename}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\waghm\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+
+Fix the python code above and return the new python code:
+            
+2024-10-09 19:31:08 [INFO] Code generated:
+            ```
+            import pandas as pd
+import matplotlib.pyplot as plt
+
+# Assuming dfs[0] is already defined as your DataFrame
+df = dfs[0]
+df = df.rename(columns={'Unnamed: 0': 'Location', 'Total number of accidents': 'Total Accidents'})
+df = df[['Location', 'Total Accidents']]
+df['Total Accidents'] = pd.to_numeric(df['Total Accidents'], errors='coerce')
+
+plt.figure(figsize=(10, 6))
+plt.bar(df['Location'], df['Total Accidents'], color='skyblue')
+plt.title('Number of Accidents vs Location')
+plt.xlabel('Location')
+plt.ylabel('Total Number of Accidents')
+plt.xticks(rotation=45)
+plt.tight_layout()
+
+# Save the plot to a file
+plot_filename = 'D:/COURSES/RANDOM_PROJECTS/PANDAS AI STEAMLIT/pandas-ai-streamlit/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+
+# Show the plot
+plt.show()
+
+# Return the plot filename as a dictionary
+result = {'type': 'plot', 'value': plot_filename}
+            ```
+            
+2024-10-09 19:31:08 [INFO] Executing Step 2: CodeCleaning
+2024-10-09 19:31:08 [INFO] Saving charts to D:\COURSES\RANDOM_PROJECTS\PANDAS AI STEAMLIT\pandas-ai-streamlit\exports\charts\temp_chart.png
+2024-10-09 19:31:08 [INFO] 
+Code running:
+```
+df = dfs[0]
+df = df.rename(columns={'Unnamed: 0': 'Location', 'Total number of accidents': 'Total Accidents'})
+df = df[['Location', 'Total Accidents']]
+df['Total Accidents'] = pd.to_numeric(df['Total Accidents'], errors='coerce')
+plt.figure(figsize=(10, 6))
+plt.bar(df['Location'], df['Total Accidents'], color='skyblue')
+plt.title('Number of Accidents vs Location')
+plt.xlabel('Location')
+plt.ylabel('Total Number of Accidents')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'D:/COURSES/RANDOM_PROJECTS/PANDAS AI STEAMLIT/pandas-ai-streamlit/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+plt.show()
+result = {'type': 'plot', 'value': plot_filename}
+        ```
+2024-10-09 19:31:09 [ERROR] Failed with error: Traceback (most recent call last):
+  File "C:\Users\waghm\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+2024-10-09 19:31:09 [WARNING] Failed to execute code retrying with a correction framework [retry number: 3]
+2024-10-09 19:31:09 [INFO] Executing Pipeline: ErrorCorrectionPipeline
+2024-10-09 19:31:09 [INFO] Executing Step 0: ErrorPromptGeneration
+2024-10-09 19:31:09 [INFO] Using prompt: <dataframe>
+dfs[0]:62x8
+Unnamed: 0,Year,Total number of accidents,Fatal Accidents,Non-Fatal Accidents,Killed,Injured,Total number of vehicles involved
+Pakistan,2010-11,259,147,272,4719,3913,1580
+Khyber Pakhtunkhwa,2013-14*,297,608,5104,2692,838,1541
+Sindh,2013-14,256,3500,5369,245,542,4260
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ plot the number of accidents vs location
+
+You generated this python code:
+df = dfs[0]
+df = df.rename(columns={'Unnamed: 0': 'Location', 'Total number of accidents': 'Total Accidents'})
+df = df[['Location', 'Total Accidents']]
+df['Total Accidents'] = pd.to_numeric(df['Total Accidents'], errors='coerce')
+plt.figure(figsize=(10, 6))
+plt.bar(df['Location'], df['Total Accidents'], color='skyblue')
+plt.title('Number of Accidents vs Location')
+plt.xlabel('Location')
+plt.ylabel('Total Number of Accidents')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'D:/COURSES/RANDOM_PROJECTS/PANDAS AI STEAMLIT/pandas-ai-streamlit/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+plt.show()
+result = {'type': 'plot', 'value': plot_filename}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\waghm\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+
+Fix the python code above and return the new python code:
+2024-10-09 19:31:09 [INFO] Executing Step 1: CodeGenerator
+2024-10-09 19:31:14 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-09 19:31:14 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:62x8
+Unnamed: 0,Year,Total number of accidents,Fatal Accidents,Non-Fatal Accidents,Killed,Injured,Total number of vehicles involved
+Pakistan,2010-11,259,147,272,4719,3913,1580
+Khyber Pakhtunkhwa,2013-14*,297,608,5104,2692,838,1541
+Sindh,2013-14,256,3500,5369,245,542,4260
+</dataframe>
+
+
+The user asked the following question:
+### QUERY
+ plot the number of accidents vs location
+
+You generated this python code:
+df = dfs[0]
+df = df.rename(columns={'Unnamed: 0': 'Location', 'Total number of accidents': 'Total Accidents'})
+df = df[['Location', 'Total Accidents']]
+df['Total Accidents'] = pd.to_numeric(df['Total Accidents'], errors='coerce')
+plt.figure(figsize=(10, 6))
+plt.bar(df['Location'], df['Total Accidents'], color='skyblue')
+plt.title('Number of Accidents vs Location')
+plt.xlabel('Location')
+plt.ylabel('Total Number of Accidents')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'D:/COURSES/RANDOM_PROJECTS/PANDAS AI STEAMLIT/pandas-ai-streamlit/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+plt.show()
+result = {'type': 'plot', 'value': plot_filename}
+
+It fails with the following error:
+Traceback (most recent call last):
+  File "C:\Users\waghm\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+
+Fix the python code above and return the new python code:
+            
+2024-10-09 19:31:14 [INFO] Code generated:
+            ```
+            import pandas as pd
+import matplotlib.pyplot as plt
+
+# Assuming dfs[0] is already defined as your DataFrame
+df = dfs[0]
+df = df.rename(columns={'Unnamed: 0': 'Location', 'Total number of accidents': 'Total Accidents'})
+df = df[['Location', 'Total Accidents']]
+df['Total Accidents'] = pd.to_numeric(df['Total Accidents'], errors='coerce')
+
+plt.figure(figsize=(10, 6))
+plt.bar(df['Location'], df['Total Accidents'], color='skyblue')
+plt.title('Number of Accidents vs Location')
+plt.xlabel('Location')
+plt.ylabel('Total Number of Accidents')
+plt.xticks(rotation=45)
+plt.tight_layout()
+
+# Save the plot to a file
+plot_filename = 'D:/COURSES/RANDOM_PROJECTS/PANDAS AI STEAMLIT/pandas-ai-streamlit/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+
+# Show the plot
+plt.show()
+
+# Return the plot filename as a dictionary
+result = {'type': 'plot', 'value': plot_filename}
+            ```
+            
+2024-10-09 19:31:14 [INFO] Executing Step 2: CodeCleaning
+2024-10-09 19:31:14 [INFO] Saving charts to D:\COURSES\RANDOM_PROJECTS\PANDAS AI STEAMLIT\pandas-ai-streamlit\exports\charts\temp_chart.png
+2024-10-09 19:31:14 [INFO] 
+Code running:
+```
+df = dfs[0]
+df = df.rename(columns={'Unnamed: 0': 'Location', 'Total number of accidents': 'Total Accidents'})
+df = df[['Location', 'Total Accidents']]
+df['Total Accidents'] = pd.to_numeric(df['Total Accidents'], errors='coerce')
+plt.figure(figsize=(10, 6))
+plt.bar(df['Location'], df['Total Accidents'], color='skyblue')
+plt.title('Number of Accidents vs Location')
+plt.xlabel('Location')
+plt.ylabel('Total Number of Accidents')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plot_filename = 'D:/COURSES/RANDOM_PROJECTS/PANDAS AI STEAMLIT/pandas-ai-streamlit/exports/charts/temp_chart.png'
+plt.savefig(plot_filename)
+plt.show()
+result = {'type': 'plot', 'value': plot_filename}
+        ```
+2024-10-09 19:31:14 [ERROR] Failed with error: Traceback (most recent call last):
+  File "C:\Users\waghm\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandasai\pipelines\chat\code_execution.py", line 97, in execute
+    raise InvalidOutputValueMismatch(
+pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
+
+2024-10-09 19:31:14 [ERROR] Pipeline failed on step 6: Value type <class 'str'> must match with type plot
