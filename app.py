@@ -10,15 +10,15 @@ load_dotenv()
 st.title("pandas-ai streamlit interface")
 
 
-# if "openai_key" not in st.session_state:
-#     with st.form("API key"):
-#         key = st.text_input("OpenAI Key", value="", type="password")
-#         if st.form_submit_button("Submit"):
-#             st.session_state.openai_key = key
-#             st.session_state.prompt_history = []
-#             st.session_state.df = None
-#             st.success('Saved API key for this session.')
-st.session_state.openai_key = os.getenv('OPENAI_API_KEY')
+if "openai_key" not in st.session_state:
+    with st.form("API key"):
+        key = st.text_input("OpenAI Key", value="", type="password")
+        if st.form_submit_button("Submit"):
+            st.session_state.openai_key = key
+            st.session_state.prompt_history = []
+            st.session_state.df = None
+            st.success('Saved API key for this session.')
+# st.session_state.openai_key = os.getenv('OPENAI_API_KEY')
 if "openai_key" in st.session_state:
     if st.session_state.df is None:
         uploaded_file = st.file_uploader(
