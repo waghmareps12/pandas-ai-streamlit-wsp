@@ -1468,3 +1468,195 @@ result = {'type': 'plot', 'value': plot_filename}
 pandasai.exceptions.InvalidOutputValueMismatch: Value type <class 'str'> must match with type plot
 
 2024-10-09 19:31:14 [ERROR] Pipeline failed on step 6: Value type <class 'str'> must match with type plot
+2024-10-09 19:40:58 [INFO] Question: whats insigths can be drawns from this 
+2024-10-09 19:40:58 [INFO] Running PandasAI with openai LLM...
+2024-10-09 19:40:58 [INFO] Prompt ID: 203d950b-db5f-4aaf-a230-27760cd27f66
+2024-10-09 19:40:58 [INFO] Executing Pipeline: GenerateChatPipeline
+2024-10-09 19:40:58 [INFO] Executing Step 0: ValidatePipelineInput
+2024-10-09 19:40:58 [INFO] Executing Step 1: CacheLookup
+2024-10-09 19:40:58 [INFO] Executing Step 2: PromptGeneration
+2024-10-09 19:40:58 [INFO] Using prompt: <dataframe>
+dfs[0]:62x8
+Unnamed: 0,Year,Total number of accidents,Fatal Accidents,Non-Fatal Accidents,Killed,Injured,Total number of vehicles involved
+Sindh,2013-14*,1270,883,186,756,9710,1142
+Khyber Pakhtunkhwa,2008-09,881,1083,609,961,5071,381
+Balochistan,2015-16*,924,644,2629,140,863,382
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ whats insigths can be drawns from this 
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+2024-10-09 19:40:58 [INFO] Executing Step 3: CodeGenerator
+2024-10-09 19:41:08 [INFO] HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-09 19:41:08 [INFO] Prompt used:
+            <dataframe>
+dfs[0]:62x8
+Unnamed: 0,Year,Total number of accidents,Fatal Accidents,Non-Fatal Accidents,Killed,Injured,Total number of vehicles involved
+Sindh,2013-14*,1270,883,186,756,9710,1142
+Khyber Pakhtunkhwa,2008-09,881,1083,609,961,5071,381
+Balochistan,2015-16*,924,644,2629,140,863,382
+</dataframe>
+
+
+
+
+Update this initial code:
+```python
+# TODO: import the required dependencies
+import pandas as pd
+
+# Write code here
+
+# Declare result var: 
+type (possible values "string", "number", "dataframe", "plot"). Examples: { "type": "string", "value": f"The highest salary is {highest_salary}." } or { "type": "number", "value": 125 } or { "type": "dataframe", "value": pd.DataFrame({...}) } or { "type": "plot", "value": "temp_chart.png" }
+
+```
+
+
+
+### QUERY
+ whats insigths can be drawns from this 
+
+Variable `dfs: list[pd.DataFrame]` is already declared.
+
+At the end, declare "result" variable as a dictionary of type and value.
+
+If you are asked to plot a chart, use "matplotlib" for charts, save as png.
+
+
+Generate python code and return full updated code:
+            
+2024-10-09 19:41:08 [INFO] Code generated:
+            ```
+            # Import the required dependencies
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Sample data as provided in the question
+data = {
+    "Unnamed: 0": ["Sindh", "Khyber Pakhtunkhwa", "Balochistan"],
+    "Year": ["2013-14*", "2008-09", "2015-16*"],
+    "Total number of accidents": [1270, 881, 924],
+    "Fatal Accidents": [883, 1083, 644],
+    "Non-Fatal Accidents": [186, 609, 2629],
+    "Killed": [756, 961, 140],
+    "Injured": [9710, 5071, 863],
+    "Total number of vehicles involved": [1142, 381, 382]
+}
+
+# Create DataFrame
+dfs = [pd.DataFrame(data)]
+
+# Analyze the data
+total_accidents = dfs[0]["Total number of accidents"].sum()
+total_fatal_accidents = dfs[0]["Fatal Accidents"].sum()
+total_non_fatal_accidents = dfs[0]["Non-Fatal Accidents"].sum()
+total_killed = dfs[0]["Killed"].sum()
+total_injured = dfs[0]["Injured"].sum()
+
+# Prepare insights
+insights = f"""
+Total Accidents: {total_accidents}
+Total Fatal Accidents: {total_fatal_accidents}
+Total Non-Fatal Accidents: {total_non_fatal_accidents}
+Total Killed: {total_killed}
+Total Injured: {total_injured}
+"""
+
+# Plotting the data
+plt.figure(figsize=(10, 6))
+plt.bar(dfs[0]["Unnamed: 0"], dfs[0]["Total number of accidents"], color='blue', label='Total Accidents')
+plt.bar(dfs[0]["Unnamed: 0"], dfs[0]["Fatal Accidents"], color='red', alpha=0.7, label='Fatal Accidents')
+plt.bar(dfs[0]["Unnamed: 0"], dfs[0]["Non-Fatal Accidents"], color='green', alpha=0.5, label='Non-Fatal Accidents')
+
+plt.title('Accident Statistics by Region')
+plt.xlabel('Region')
+plt.ylabel('Number of Accidents')
+plt.legend()
+plt.xticks(rotation=45)
+plt.tight_layout()
+
+# Save the plot
+plt.savefig('accident_statistics.png')
+
+# Declare result var
+result = {
+    "type": "string",
+    "value": insights
+}
+
+# If you want to include the plot in the result as well
+result_plot = {
+    "type": "plot",
+    "value": "accident_statistics.png"
+}
+
+# Print results
+print(result)
+print(result_plot)
+            ```
+            
+2024-10-09 19:41:08 [INFO] Executing Step 4: CachePopulation
+2024-10-09 19:41:08 [INFO] Executing Step 5: CodeCleaning
+2024-10-09 19:41:08 [INFO] Saving charts to D:\COURSES\RANDOM_PROJECTS\PANDAS AI STEAMLIT\pandas-ai-streamlit\exports\charts\temp_chart.png
+2024-10-09 19:41:08 [INFO] 
+Code running:
+```
+data = {'Unnamed: 0': ['Sindh', 'Khyber Pakhtunkhwa', 'Balochistan'], 'Year': ['2013-14*', '2008-09', '2015-16*'], 'Total number of accidents': [1270, 881, 924], 'Fatal Accidents': [883, 1083, 644], 'Non-Fatal Accidents': [186, 609, 2629], 'Killed': [756, 961, 140], 'Injured': [9710, 5071, 863], 'Total number of vehicles involved': [1142, 381, 382]}
+total_accidents = dfs[0]['Total number of accidents'].sum()
+total_fatal_accidents = dfs[0]['Fatal Accidents'].sum()
+total_non_fatal_accidents = dfs[0]['Non-Fatal Accidents'].sum()
+total_killed = dfs[0]['Killed'].sum()
+total_injured = dfs[0]['Injured'].sum()
+insights = f"""
+Total Accidents: {total_accidents}
+Total Fatal Accidents: {total_fatal_accidents}
+Total Non-Fatal Accidents: {total_non_fatal_accidents}
+Total Killed: {total_killed}
+Total Injured: {total_injured}
+"""
+plt.figure(figsize=(10, 6))
+plt.bar(dfs[0]['Unnamed: 0'], dfs[0]['Total number of accidents'], color='blue', label='Total Accidents')
+plt.bar(dfs[0]['Unnamed: 0'], dfs[0]['Fatal Accidents'], color='red', alpha=0.7, label='Fatal Accidents')
+plt.bar(dfs[0]['Unnamed: 0'], dfs[0]['Non-Fatal Accidents'], color='green', alpha=0.5, label='Non-Fatal Accidents')
+plt.title('Accident Statistics by Region')
+plt.xlabel('Region')
+plt.ylabel('Number of Accidents')
+plt.legend()
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig('D:/COURSES/RANDOM_PROJECTS/PANDAS AI STEAMLIT/pandas-ai-streamlit/exports/charts/temp_chart.png')
+result = {'type': 'string', 'value': insights}
+result_plot = {'type': 'plot', 'value': 'D:/COURSES/RANDOM_PROJECTS/PANDAS AI STEAMLIT/pandas-ai-streamlit/exports/charts/temp_chart.png'}
+print(result)
+print(result_plot)
+        ```
+2024-10-09 19:41:08 [INFO] Executing Step 6: CodeExecution
+2024-10-09 19:41:09 [INFO] Executing Step 7: ResultValidation
+2024-10-09 19:41:09 [INFO] Answer: {'type': 'string', 'value': '\nTotal Accidents: 207800\nTotal Fatal Accidents: 89402\nTotal Non-Fatal Accidents: 118398\nTotal Killed: 109224\nTotal Injured: 249668\n'}
+2024-10-09 19:41:09 [INFO] Executing Step 8: ResultParsing

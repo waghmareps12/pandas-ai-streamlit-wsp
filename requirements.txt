@@ -1,4 +1,5 @@
-langchain
-langchain-experimental
+pandas
+pandasai
 langchain-community
 streamlit
+matplotlib
